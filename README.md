@@ -3,5 +3,5 @@ purenotify.js
 
 jQuery Notification plugin
 
-### Useage
+### Usage
       $('.selector').notice(options);
