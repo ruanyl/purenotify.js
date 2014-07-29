@@ -1,6 +1,6 @@
 /** purenotify.js - v0.1 - 2014/07/29
  * http://blog.bigruan.com/purenotify.js/
- * Copyright (c) 2014 Jaime Pillora - MIT
+ * Copyright (c) 2014 Yulong Ruan - MIT
  */
 (function($) {
     var defaults = {
