@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Pure Notify JS</title>
+    <style type="text/css" media="screen">
+      .wrap {
+
+      }
+      .left {
+        float: left;
+        width: 60%;
+        height: 200px;
+        background-color: #00ffff;
+      }
+      .right {
+        float: right;
+        width: 40%;
+        height: 200px;
+        background-color: #00ff00;
+      }
+      .leftinner {
+        position: absolute;
+        top: 50px;
+        left: 50px;
+        height: 100px;
+        width: 100px;
+        background-color: #ff0000;
+      }
+    </style>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="./purenotify.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+        <div class="left">
+          <div class="leftinner">
+            <p>Click me</p>
+          </div>
+        </div>
+        <div class="right">
+          <p>Click me</p>
+        </div>
+    </div>
+    <script language="javascript" type="text/javascript">
+      $('.right').click(function(e) {
+          $('.right').notice();
+      });
+      $('.leftinner').click(function(e) {
+          e.stopPropagation();
+          $('.leftinner').notice();
+      });
+      $('.left').click(function(e) {
+          $('.left').notice();
+      });
+    </script>
+  </body>
+</html>
