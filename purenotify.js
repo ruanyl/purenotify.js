@@ -8,14 +8,15 @@
         offsetX: "10",
         offsetY: "10",
         opacity: 0.6,
-        position: 'bottom-right',
+        position: 'right-bottom',
         fontColor: '#fff',
         msg: 'Notice!'
     };
-    var inner = 'position: absolute; padding: 10px 15px; z-index: 999;';
-    var wrapper = 'position: absolute; display: inline-block; height: 0; width: 0; z-index: 1;';
+    var inner_style = 'position: absolute; display: inline-block; padding: 10px 15px; margin: 5px; z-index: 999;';
+    var wrapper_style = 'position: absolute; display: inline-block; height: 0; width: 0; z-index: 1;';
     $.fn['notice'] = function(options) {
-        var notification_html,
+        var outter,
+            inner,
             custom_style,
             notice,
             top,
@@ -33,12 +34,15 @@
             ';color:' + options.fontColor +
             ';opacity:' + options.opacity +
             ';filter:alpha(opacity=' + (options.opacity * 100) + ');';
-        notice = this.find('#notice');
+
+        outter = $('<div class="notice" style="' + wrapper_style + '"></div>');
+        inner = $('<div style="' + inner_style + custom_style + '">' + options.msg + '</div>');
+        notice = this.find('.notice');
         if (notice.length !== 0) {
-            notice.remove();
+            notice.prepend(inner);
+        } else {
+            this.prepend(outter.append(inner));
         }
-        notification_html = $('<div class="notice" style="' + wrapper + '"><div style="' + inner + custom_style + '">' + options.msg + '</div></div>');
-        this.prepend(notification_html);
         return this;
     };
     $.fn['removeNotice'] = function() {
