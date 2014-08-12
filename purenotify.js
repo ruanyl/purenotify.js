@@ -8,12 +8,14 @@
         offsetX: "10",
         offsetY: "10",
         opacity: 0.6,
-        position: 'right-top',
+        position: 'left-bottom',
         fontColor: '#fff',
+        autoClose: true,
+        showTime: 200,
         msg: 'Notice!'
     };
     var wrapper_style = 'position: absolute; display: inline-block; height: 0; width: 0; z-index: 1;';
-    var inner_style = 'position: relative; display: inline-block; padding: 10px 15px; margin: 2px; z-index: 999;';
+    var inner_style = 'position: absolute; display: inline-block; padding: 10px 15px; margin: 2px; z-index: 999;';
     $.fn['notice'] = function(options) {
         var outter,
             inner,
@@ -40,27 +42,18 @@
 
         notice = this.find('.notice');
         if (notice.length !== 0) {
-            notice.prepend(inner);
-            inner.delay(2000).fadeOut(200, function() {
-                $(this).remove();
-            });
+            notice.html(inner);
         } else {
             this.prepend(outter.append(inner));
-            inner.delay(2000).fadeOut(200, function() {
+        }
+        if(options.autoClose) {
+            inner.delay(2000).slideUp(options.showTime, function() {
                 $(this).remove();
             });
         }
 
         var notice_width = inner.outerWidth(true);
         var notice_height = inner.outerHeight(true);
-        if(right) {
-            var notice_right = parseInt(inner.css('right').slice(0, -2)) + notice_width;
-            inner.css('right', notice_right+'px');
-        }
-        if(bottom) {
-            var notice_bottom = parseInt(inner.css('bottom').slice(0, -2)) + notice_height;
-            inner.css('bottom', notice_bottom+'px');
-        }
 
         return this;
     };
